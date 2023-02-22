@@ -1,82 +1,31 @@
 //
 //  ViewController.swift
-//  Project6b
+//  Project7
 //
-//  Created by Marko Zivanovic on 18.2.23..
+//  Created by Marko Zivanovic on 21.2.23..
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
+    
+    var petitions = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let label1 = UILabel()
-        label1.translatesAutoresizingMaskIntoConstraints = false
-        label1.backgroundColor = .red
-        label1.text = "THESE"
-        label1.sizeToFit()
         
-        let label2 = UILabel()
-        label2.translatesAutoresizingMaskIntoConstraints = false
-        label2.backgroundColor = .cyan
-        label2.text = "ARE"
-        label2.sizeToFit()
-        
-        let label3 = UILabel()
-        label3.translatesAutoresizingMaskIntoConstraints = false
-        label3.backgroundColor = .yellow
-        label3.text = "SOME"
-        label3.sizeToFit()
-        
-        let label4 = UILabel()
-        label4.translatesAutoresizingMaskIntoConstraints = false
-        label4.backgroundColor = .green
-        label4.text = "AWESOME"
-        label4.sizeToFit()
-        
-        let label5 = UILabel()
-        label5.translatesAutoresizingMaskIntoConstraints = false
-        label5.backgroundColor = .orange
-        label5.text = "LABELS"
-        label5.sizeToFit()
-        
-        view.addSubview(label1)
-        view.addSubview(label2)
-        view.addSubview(label3)
-        view.addSubview(label4)
-        view.addSubview(label5)
-        
-//        let viewsDicitionary = ["label1": label1, "label2": label2, "label3": label3, "label4": label4, "label5": label5]
-//
-//        for label in viewsDicitionary.keys {
-//            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDicitionary))
-//        //MARK: Loop with one line of code
-//            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label2]|", options: [], metrics: nil, views: viewsDicitionary))
-//            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label3]|", options: [], metrics: nil, views: viewsDicitionary))
-//            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label4]|", options: [], metrics: nil, views: viewsDicitionary))
-//            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label5]|", options: [], metrics: nil, views: viewsDicitionary))
-//        }
-//
-//        let metrics = ["labelHeight": 88]
-//
-//        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)-(>=10)-|]", options: [], metrics: metrics, views: viewsDicitionary))
-        
-        //MARK:
-        var previus: UILabel?
-        
-        for label in [label1, label2, label3, label4, label5] {
-            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
-            
-            if let previus = previus {
-                label.topAnchor.constraint(equalTo: previus.bottomAnchor, constant: 10).isActive = true
-            } else {
-                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-            }
-            previus = label
-        }
     }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return petitions.count
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =tableView?.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = "Title"
+        cell.detailTextLabel?.text = "Subtitle"
+        return cell
+    }
+
 }
 
