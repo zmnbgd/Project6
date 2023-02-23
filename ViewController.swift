@@ -9,12 +9,26 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var petitions = [String]()
+    var petitions = [Petition]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
         
+        if let url = URL(String: urlString) {
+            if let data = try? Data(contentsOf: url) {
+                //MARK: Ew are ok to parse that data
+            }
+        }
+    }
+    
+    func parse(json: Date) {
+        let decoder = JSONDecoder()
+        
+        if let jsonPetitions = try? decoder.decode(Petitions.self, from: json)
+            petitions = jsonPetitons.result
+            
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
